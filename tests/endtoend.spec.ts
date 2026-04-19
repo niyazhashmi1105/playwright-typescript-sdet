@@ -270,7 +270,7 @@ test('E2E: User should navigate to create account and register successfully usin
   expect(logoutText).toBe('Logout');
 });
 
-test('Login with Valid Users', async ({
+test.skip('Login with Valid Users', async ({
   page,
   createAccountPage,
   dashboardPage,

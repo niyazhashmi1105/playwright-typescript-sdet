@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { APIUtils } from '../utils/apiutils';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
+import { APIUtils } from '../utils/apiutils';
 import { SchemaValidator } from '../utils/schemaValidator';
 
 let baseURL = 'https://dummyjson.com';
