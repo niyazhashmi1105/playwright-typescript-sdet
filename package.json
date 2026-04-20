@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "test": "playwright test dummyJsonAPIs.spec.ts --workers=3",
+    "test": "playwright test dummyJsonAPIs.spec.ts --workers=1",
     "ci": "yarn lint && yarn test"
   },
   "dependencies": {
