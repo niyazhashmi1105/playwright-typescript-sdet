@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-test.only('calendar test', async ({page}) => {
+test('calendar test', async ({page}) => {
 
 
     await page.goto('https://testautomationpractice.blogspot.com/');
@@ -46,7 +46,7 @@ test.only('calendar test', async ({page}) => {
 })
 
 
-test('Date Picker2 test', async ({context,page})=>{
+test.only('Date Picker2 test', async ({context,page})=>{
 
 
     await page.goto('https://testautomationpractice.blogspot.com/');
@@ -60,16 +60,17 @@ test('Date Picker2 test', async ({context,page})=>{
 
     await page.locator('.ui-datepicker-calendar tbody tr td:has-text("25")').click();
     
-
+    //New Tab Handling
     const [newPage] = await Promise.all([
         context.waitForEvent('page'),
         await page.getByText('Comments (Atom)').click()
     ])
 
-    await newPage.waitForLoadState();
+    await newPage.waitForLoadState('domcontentloaded');
     console.log('New page URL: ', newPage.url());
     expect(newPage.url()).toEqual('https://testautomationpractice.blogspot.com/feeds/posts/default');
 
+    //Upload Single and Multiple Files
     await page.bringToFront();
     await page.locator('#singleFileInput').setInputFiles('playwright-report/index.html');
 
