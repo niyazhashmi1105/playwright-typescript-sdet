@@ -1,11 +1,19 @@
-import { test, chromium, expect } from '@playwright/test'
+import { test, chromium, expect,devices } from '@playwright/test'
 
+// yarn playright test --grep "@sanity" sanity
+// yarn playright test --grep "@regression" regression
+// yarn playright test --grep "@sanity" --grep-invert "@regression" only sanity not regression
+// yarn playright test --grep "@sanity|@regression" sanity or regression
+// yarn playright test --grep (?=.*@sanity) (?=.*@regression) both sanity and regression
 
-test('Multiple tabs handling', async () => {
+ test.use({ ...devices['Pixel 5'] });
+test.only('Multiple tabs handling', async () => {
 
     const browser = await chromium.launch()
     const context = await browser.newContext()
     const page1 = await context.newPage()
+
+   
 
     await page1.goto('https://testautomationpractice.blogspot.com/')
 
@@ -30,7 +38,7 @@ test('Multiple tabs handling', async () => {
 })
 
 
-test.only('Multiple Pop up Windows handling', async () => {
+test('Multiple Pop up Windows handling', async () => {
 
     const browser = await chromium.launch()
     const context = await browser.newContext()
