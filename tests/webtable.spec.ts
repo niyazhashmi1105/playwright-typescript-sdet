@@ -160,7 +160,7 @@ test('Verify Firefox Disk Space', async ({ page }) => {
 })
 
 
-test.only('Verify Chrome CPU Load - Alternative Way', async({page})=>{
+test('Verify Chrome CPU Load - Alternative Way', async({page})=>{
 
     await page.goto('https://testautomationpractice.blogspot.com/')
 
@@ -183,4 +183,43 @@ test.only('Verify Chrome CPU Load - Alternative Way', async({page})=>{
     }
 
     expect(page.locator('#displayValues strong').first()).toHaveText(cpuLoad)
+})
+
+test('Verify Data Table After Sorting Last Name Column', async({page})=>{
+
+    await page.setViewportSize({ 'width': 1920, 'height': 1080 });
+        await page.goto('https://the-internet.herokuapp.com/tables');
+
+        const namesArrUnsorted = await page.locator('#table1 tr td:nth-child(1)').allTextContents();
+        console.log(namesArrUnsorted);
+        
+        //Click on Last Name column
+        await page.locator('#table1 tr th').first().click()
+
+        const namesArrSorted = await page.locator('#table1 tr td:nth-child(1)').allTextContents();
+        console.log(namesArrSorted);
+
+        expect(namesArrUnsorted).toEqual(expect.arrayContaining(namesArrSorted));
+        expect(namesArrSorted).toEqual(expect.arrayContaining(namesArrUnsorted));
+        
+})
+
+test('Verify Data Table After Sorting For All Columns', async({page})=>{
+
+    await page.setViewportSize({ 'width': 1920, 'height': 1080 });
+        await page.goto('https://the-internet.herokuapp.com/tables');
+
+        const arrUnsorted = (await page.locator('#table1 tr td').allInnerTexts());
+        console.log(arrUnsorted);
+        
+        //Click on Last Name column
+        await page.locator('#table1 tr th').first().click()
+
+        const arrSorted = await page.locator('#table1 tr td').allInnerTexts();
+        console.log(arrSorted);
+
+        expect(arrUnsorted).toEqual(expect.arrayContaining(arrSorted));
+        expect(arrSorted).toEqual(expect.arrayContaining(arrUnsorted));
+
+
 })
