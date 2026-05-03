@@ -48,10 +48,9 @@ test.describe('Dropdown Tests', () => {
 
     test('Auto Suggestion Dropdown', async ({ page }) => {
 
-
         await page.goto('https://www.amazon.in/')
-
-        const [response] = await Promise.all([
+        await page.getByRole('button', { name: 'Continue shopping' }).click()
+        await Promise.all([
             page.waitForResponse(res =>
                 res.url().includes('/suggestions') && res.status() === 200
             ),

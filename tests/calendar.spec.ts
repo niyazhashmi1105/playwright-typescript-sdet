@@ -47,7 +47,7 @@ test('calendar test', async ({ page }) => {
 })
 
 
-test('Date Picker2 test', async ({ context, page }) => {
+test('New Tabs and Upload File test', async ({ context, page }) => {
 
 
     await page.goto('https://testautomationpractice.blogspot.com/');

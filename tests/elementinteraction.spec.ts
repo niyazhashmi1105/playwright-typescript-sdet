@@ -116,8 +116,9 @@ test.describe('Element Interactions', () => {
 
     })
 
-    test.only('Stock Market for Gainers Dynamic Table Automation', async ({ page }) => {
+    test('Stock Market for Gainers Dynamic Table Automation', async ({ page }) => {
 
+        test.setTimeout(60 * 1000)
         page.setViewportSize({ 'width': 1920, 'height': 1020 })
         //await page.goto('https://money.rediff.com/gainers/bse/daily/groupa?src=gain_lose')
         await page.goto('https://money.rediff.com/losers/bse/daily/groupall')
@@ -126,31 +127,40 @@ test.describe('Element Interactions', () => {
         expect(table).toBeVisible()
         const rows = table.locator('tr')
 
-
-        let text = (await page.locator("div[class='alignC bold grey']").innerText()).trim();
+        let text = '';
+        text = (await page.locator("div[class='alignC bold grey']").innerText()).trim();
 
         const numbers = text.match(/\d+/g)?.map(Number)
         let totalPages = 0;
+        let perPage = 0;
 
         if (numbers && numbers.length >= 3) {
             const [start, end, total] = numbers;
-            const perPage = end - start + 1;
+            perPage = end - start + 1;
             totalPages = Math.ceil(total / perPage);
         }
-        console.log(totalPages)
 
         let currentPage = 1;
+        const data:string[]= [];        
         while (currentPage <= totalPages) {
 
             const allRows = await rows.allInnerTexts()
-            console.log(allRows.length)
-
-            console.log('---------------------------------')
-            console.log(`Records on ${currentPage} are: `)
-            console.log('---------------------------------')
-
             for (const row of allRows) {
-                console.log(row);
+                if (currentPage === totalPages) {
+                    //recalculate perpage
+                    text = (await page.locator("div[class='alignC bold grey']").innerText()).trim();
+                    const numbers = text.match(/\d+/g)?.map(Number)
+                    let perPage = 0;
+                    if (numbers && numbers.length >= 3) {
+                        const [start, end] = numbers;
+                        perPage = end - start + 1;
+                    }
+                    expect(perPage).toBeLessThanOrEqual(allRows.length);
+                } else {
+                    expect(perPage).toBe(allRows.length);
+                }
+                
+                data.push(row);
             }
 
             const nextButton = page.getByText(">");
@@ -159,13 +169,10 @@ test.describe('Element Interactions', () => {
                 await nextButton.hover();
                 await nextButton.click();
                 await page.waitForLoadState('domcontentloaded')
-                await page.waitForTimeout(1000)
             }
 
             currentPage++;
         }
-
-
     })
 
 })
