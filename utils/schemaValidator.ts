@@ -7,7 +7,7 @@ export class SchemaValidator {
     private static ajv = (() => {
         const ajvInstance = new Ajv({
             allErrors: true,
-            strict: true // 🔥 allows flexibility
+            strict: true 
         });
         addFormats(ajvInstance);
         return ajvInstance;

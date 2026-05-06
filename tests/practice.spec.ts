@@ -26,15 +26,15 @@
 
 //Callback functions
 
-// function getResult(result:number):number{
-//     return result;
-// }
+function getResult(result:number):number{
+    return result;
+}
 
-// function add(a:number,b:number,callback:(result:number)=>number)
-// {
-//         let result = a+b
-//         console.log(callback(result))
+function add(a:number,b:number,callback:(result:number)=>number)
+{
+        let result = a+b
+        console.log(callback(result))
 
-// }
-// add(10,20,getResult)
+}
+add(10,20,getResult)
 

@@ -5,6 +5,7 @@ test('Alerts Handling', async({page})=>{
 
     await page.goto('https://testautomationpractice.blogspot.com/')
 
+    
     page.on('dialog',dialog=>{
         
        //dialog.dismiss()
@@ -16,5 +17,7 @@ test('Alerts Handling', async({page})=>{
     //await page.getByRole('button',{name:'Simple Alert'}).click()
     //await page.locator('#confirmBtn').click()
     await page.locator('#promptBtn').click()
+
+    
     await page.waitForTimeout(2000)
 })

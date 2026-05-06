@@ -68,7 +68,6 @@ test.only('Dynamic pagination test', async ({page}) => {
 
     while(hasMorePages){
 
-      
         const allrows = await page.locator('#example tbody tr').all();
         console.log('-----------------------------------------------------------------');
         console.log('Data on Page No: ', pageNo+1);

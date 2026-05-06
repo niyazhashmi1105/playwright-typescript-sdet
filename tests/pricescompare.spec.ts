@@ -44,7 +44,7 @@ import { test, expect, Page } from '@playwright/test';
 
 // 🔹 Helper: Clean and parse price text
 function parsePrice(priceText: string): number {
-    const price = parseFloat(priceText.replace(/[^0-9.]/g, ''))  // ✅ Remove trailing dot
+    const price = parseFloat(priceText.replace(/[^0-9.]/g, ''))  
     return isNaN(price) ? 0 : price;
 }
 
@@ -70,12 +70,12 @@ test.describe('Mobile Price Comparison', () => {
     test('should fetch mobile price from Amazon', async ({ page }) => {
         const price = await fetchPrice(
             page,
-            'https://www.amazon.in/dp/B0CHX1W1XY',  // 🔁 Replace with actual URL
+            'https://www.amazon.in/dp/B0CHX1W1XY',  
             '.a-price-whole'
         );
 
         console.log(`Amazon Price: ₹${price}`);
-        expect(price).toBeGreaterThan(0); // ✅ Assert price is valid
+        expect(price).toBeGreaterThan(0); 
     });
 
     // ✅ Test 2: Fetch price from Flipkart
@@ -87,7 +87,7 @@ test.describe('Mobile Price Comparison', () => {
         );
 
         console.log(`Flipkart Price: ₹${price}`);
-        expect(price).toBeGreaterThan(0); // ✅ Assert price is valid
+        expect(price).toBeGreaterThan(0); 
     });
 
     // ✅ Test 3: Compare prices and find cheapest
@@ -102,7 +102,7 @@ test.describe('Mobile Price Comparison', () => {
             const [amazonPrice, flipkartPrice] = await Promise.all([
                 fetchPrice(
                     amazonPage,
-                    'https://www.amazon.in/dp/B0CHX1W1XY',       // 🔁 Replace with actual URL
+                    'https://www.amazon.in/dp/B0CHX1W1XY',      
                     '.a-price-whole'
                 ),
                 fetchPrice(

@@ -52,6 +52,8 @@ test('Get Request for All Products', async ({ request }) => {
         console.log(await response.json());
         const responseBody = await response.json();
 
+        console.log(responseBody)
+
         //Basic Assertion
         expect(response.status()).toBe(200);
         expect(response.ok()).toBeTruthy();
@@ -515,8 +517,8 @@ test('Get Request for all Products Schema Validation using Schema Validator Util
         const response = await request.get(baseURL + '/products');
         const body = await response.json();
         const isValid = SchemaValidator.validateSchema(schema, body, {
-                softValidation: true, // 🔥 fail test
-                ignoreFields: ['brand', 'meta.barcode'] // 🔥 ignore inconsistent field
+                softValidation: true, 
+                ignoreFields: ['brand', 'meta.barcode'] 
         });
 
         expect(isValid).toBeTruthy();
@@ -537,13 +539,12 @@ test('Get Request for Search Products Using Query Parameters', async ({ request 
 
 test('Get Request for All Products Using Path Parameters', async ({ request }) => {
 
-        const response = await APIUtils.getRequest(request, baseURL + '/products/{id}', undefined,
-                { id: 1 })
+        const response = await APIUtils.getRequest(request, baseURL + '/products/{id}', undefined,{ id: 1 })
         console.log(await response.json())
         expect(response.status()).toBe(200)
 })
 
-test('Get Request for All Products Using Both Query and Path Parameters', async ({ request }) => {
+test.only('Get Request for All Products Using Both Query and Path Parameters', async ({ request }) => {
 
         const response = await APIUtils.getRequest(request, baseURL + '/products/{id}',
                 { include: 'reviews' },

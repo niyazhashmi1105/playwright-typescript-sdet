@@ -40,7 +40,7 @@ export class APIUtils {
             for (const key in pathParams) {
                 url = url.replace(`{${key}}`, String(pathParams[key]));
             }
-            //console.log(url)
+            console.log(url)
         }
         const response = await request.get(url);
         return response;

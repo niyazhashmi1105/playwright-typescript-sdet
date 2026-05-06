@@ -26,4 +26,5 @@ test('Measure the Internet Speed Dynamically', async ({ page }) => {
     const internetUnits = await units.innerText()
     expect(await speed.innerText()).toEqual(internetSpeed)
     expect(await units.innerText()).toEqual(internetUnits)
+    await page.waitForTimeout(5000)
 })

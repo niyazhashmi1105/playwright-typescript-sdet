@@ -11,9 +11,11 @@ test('Frames Handling', async({page})=>{
 
     await page.frameLocator('[src="frame_3.html"]').locator('input[name="mytext3"]').fill('frame 3 located')
 
-    const frame = page.frameLocator('[src="frame_3.html"]');
-    await frame.frameLocator('[src="https://docs.google.com/forms/d/1yfUq-GO9BEssafd6TvHhf0D6QLDVG3q5InwNE2FFFFQ/viewform?embedded=true"]')
-    .locator('#i6').click()
+    await page.frameLocator('[src="frame_3.html"]').
+    frameLocator('[src="https://docs.google.com/forms/d/1yfUq-GO9BEssafd6TvHhf0D6QLDVG3q5InwNE2FFFFQ/viewform?embedded=true"]')
+    .locator('#i6').click();
+    // await frame.frameLocator('[src="https://docs.google.com/forms/d/1yfUq-GO9BEssafd6TvHhf0D6QLDVG3q5InwNE2FFFFQ/viewform?embedded=true"]')
+    // .locator('#i6').click()
 
     await page.waitForTimeout(3000)
 })
