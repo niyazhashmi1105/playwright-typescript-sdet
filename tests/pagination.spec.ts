@@ -59,7 +59,7 @@ test('Verify checkbox is checked on any page using single line if Element is vis
 })
 
 
-test.only('Dynamic pagination test', async ({page}) => {
+test('Dynamic pagination test', async ({page}) => {
 
     await page.goto('https://datatables.net/examples/basic_init/zero_configuration.html');
 

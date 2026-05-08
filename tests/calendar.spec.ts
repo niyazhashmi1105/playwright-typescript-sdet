@@ -165,7 +165,7 @@ test('Cleartrip Calendar', async ({ page }) => {
 })
 
 
-test.only('Yatra Calendar', async ({ page }) => {
+test('Yatra Calendar', async ({ page }) => {
 
     await page.setViewportSize({ 'width': 1920, 'height': 1080 })
     await page.goto('https://www.yatra.com/')

@@ -7,7 +7,7 @@ import { test, chromium, expect,devices } from '@playwright/test'
 // yarn playright test --grep (?=.*@sanity) (?=.*@regression) --> both sanity and regression
 
  test.use({ ...devices['Pixel 5'] });
-test.only('Multiple tabs handling', async () => {
+test('Multiple tabs handling', async () => {
 
     const browser = await chromium.launch()
     const context = await browser.newContext()

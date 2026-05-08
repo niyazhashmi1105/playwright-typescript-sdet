@@ -13,7 +13,7 @@ test("Mock Fruit aand doesn't call API", async ({ page }) => {
     await page.waitForTimeout(5000)
 })
 
-test.only('Intercept Request and Mock the response', async ({ page }) => {
+test('Intercept Request and Mock the response', async ({ page }) => {
 
     page.setViewportSize({ 'width': 1920, 'height': 1020 })
     await page.route('**/verify', async route => {
