@@ -544,7 +544,7 @@ test('Get Request for All Products Using Path Parameters', async ({ request }) =
         expect(response.status()).toBe(200)
 })
 
-test.only('Get Request for All Products Using Both Query and Path Parameters', async ({ request }) => {
+test('Get Request for All Products Using Both Query and Path Parameters', async ({ request }) => {
 
         const response = await APIUtils.getRequest(request, baseURL + '/products/{id}',
                 { include: 'reviews' },
