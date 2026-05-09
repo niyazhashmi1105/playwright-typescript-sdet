@@ -28,6 +28,7 @@ dist-ssr
 /playwright/.cache/
 /allure-report/
 /allure-results/
+/allure-results-k8s/
 
 .env
 *.env

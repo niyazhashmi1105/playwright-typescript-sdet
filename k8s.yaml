@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: playwright-test-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: playwright
+        # Use the image you already pushed
+        image: niyazautomationqa/playwright-typescript-sdet:latest
+        imagePullPolicy: Always
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            yarn test
+        resources:
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+          requests:
+            cpu: "1"
+            memory: "2Gi"
+        volumeMounts:
+        - name: allure-results-storage
+          mountPath: /app/allure-results
+      restartPolicy: Never
+      volumes:
+      - name: allure-results-storage
+        persistentVolumeClaim:
+          # Note: Ensure you have created this PVC in Minikube first
+          claimName: allure-pvc
+  backoffLimit: 0

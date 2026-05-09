@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: allure-retriever
+spec:
+  containers:
+  - name: retriever
+    image: alpine
+    command: ["sh", "-c", "sleep 3600"]
+    # ADD THIS BLOCK
+    resources:
+      limits:
+        cpu: "200m"      # 0.2 CPU cores
+        memory: "256Mi"  # 256 Megabytes
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+    volumeMounts:
+    - name: allure-data
+      mountPath: /mnt/allure
+  volumes:
+  - name: allure-data
+    persistentVolumeClaim:
+      claimName: allure-pvc
