@@ -23,7 +23,7 @@
     "logs":"kubectl logs -f <POD_NAME>",
     "allure-k8s":"kubectl apply -f allure-retriever.yaml",
     "getpod:allure":"kubectl get pod allure-retriever",
-    "mnt:allure":"kubectl cp allure-retriever:/mnt/allure allure-results-k8s",
+    "mnt:allure":"kubectl cp allure-retriever:/mnt/allure ./allure-results",
     "del:allure":"kubectl delete pod allure-retriever",
     "del:pvc":"kubectl delete pvc allure-pvc",
     "stop": "minikube stop"

@@ -1,0 +1,72 @@
+name: K8s Minikube Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Start Minikube
+        uses: medyagh/setup-minikube@master
+        with:
+          container-runtime: docker
+          # Playwright is resource heavy; these specs help avoid crashes
+          cpus: 2
+          memory: 4000m 
+
+      - name: Build and Load Image into Minikube
+        run: |
+          docker build -t niyazautomationqa/playwright-typescript-sdet:latest .
+          # This makes the image available inside the cluster without a Docker Hub push
+          minikube image load niyazautomationqa/playwright-typescript-sdet:latest
+
+      - name: Setup K8s Resources
+        run: |
+          yarn run pvc
+          yarn run k8s
+
+      - name: Wait for Test Execution
+        run: |
+          # Wait for the job to complete (max 10 minutes)
+          kubectl wait --for=condition=complete job/playwright-test-job --timeout=600s || \
+          kubectl wait --for=condition=failed job/playwright-test-job --timeout=10s
+
+      - name: Retrieve Allure Reports
+        if: always()
+        run: |
+          # Start the retriever pod to access the PVC
+          yarn run allure-k8s
+          
+          # Wait for retriever to be ready
+          kubectl wait --for=condition=Ready pod/allure-retriever --timeout=60s
+          
+          # Copy results from the PVC to the GitHub Runner
+          yarn run mnt:allure
+
+      - name: Upload Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k8s-allure-report
+          path: ./allure-report/
+          retention-days: 30
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          publish_branch: gh-pages
+          force_orphan: true
