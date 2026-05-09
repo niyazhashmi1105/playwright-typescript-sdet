@@ -9,7 +9,7 @@ spec:
       - name: playwright
         # Use the image you already pushed
         image: niyazautomationqa/playwright-tests:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command: ["/bin/sh", "-c"]
         args:
           - |
