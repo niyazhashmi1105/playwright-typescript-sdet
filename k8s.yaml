@@ -8,7 +8,7 @@ spec:
       containers:
       - name: playwright
         # Use the image you already pushed
-        image: niyazautomationqa/playwright-typescript-sdet:latest
+        image: niyazautomationqa/playwright-tests:latest
         imagePullPolicy: Always
         command: ["/bin/sh", "-c"]
         args:

@@ -28,7 +28,6 @@ jobs:
         run: |
           docker build -t niyazautomationqa/playwright-tests:latest .
           minikube image load niyazautomationqa/playwright-tests:latest
-
       - name: Setup K8s Resources
         run: |
           yarn run pvc
@@ -36,7 +35,6 @@ jobs:
 
       - name: Wait for Test Execution
         run: |
-          yarn run test
           kubectl wait --for=condition=complete job/playwright-test-job --timeout=180s || \
           kubectl wait --for=condition=failed job/playwright-test-job --timeout=10s
 
