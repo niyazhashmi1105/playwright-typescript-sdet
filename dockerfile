@@ -36,7 +36,7 @@ RUN mkdir -p playwright-report test-results allure-results
 
 # Default command to run tests
 # Note: Adjust "test" to your specific yarn script name
-CMD ["yarn", "test"]
+CMD ["yarn","run","test"]
 
 #Running Docker image container and pull reports
 #docker run --rm -it --ipc=host \

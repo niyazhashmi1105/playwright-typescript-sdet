@@ -21,14 +21,13 @@ jobs:
         uses: medyagh/setup-minikube@master
         with:
           container-runtime: docker
-          # Playwright is resource heavy; these specs help avoid crashes
           cpus: 2
           memory: 4000m 
 
       - name: Build and Load Image into Minikube
         run: |
-          docker build -t niyazautomationqa/playwright-typescript-sdet:latest .
-          minikube image load niyazautomationqa/playwright-typescript-sdet:latest
+          docker build -t niyazautomationqa/playwright-tests:latest .
+          minikube image load niyazautomationqa/playwright-tests:latest
 
       - name: Setup K8s Resources
         run: |
@@ -37,7 +36,6 @@ jobs:
 
       - name: Wait for Test Execution
         run: |
-          yarn run test
           kubectl wait --for=condition=complete job/playwright-test-job --timeout=180s || \
           kubectl wait --for=condition=failed job/playwright-test-job --timeout=10s
 
