@@ -1,6 +1,11 @@
 # Use the official Playwright image matching your version
 FROM mcr.microsoft.com/playwright:v1.59.1-noble
 
+# Install Java (required for Allure)
+RUN apt-get update && \
+    apt-get install -y default-jre && \
+    apt-get clean;
+    
 # Set environment variables
 ENV CI=true
 # Prevent Playwright from trying to download browsers again during runtime
