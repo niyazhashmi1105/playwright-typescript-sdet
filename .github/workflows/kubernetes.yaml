@@ -46,16 +46,17 @@ jobs:
           }
         # kubectl wait --for=condition=failed job/playwright-test-job --timeout=10s
 
+      - name: Install Allure CLI on Runner
+        if: always()
+        run: |
+           sudo apt update && sudo apt install -y default-jre
+           npm install -g allure-commandline --save-dev
+
       - name: Retrieve Allure Reports
         if: always()
         run: |
-          # Start the retriever pod to access the PVC
           yarn run allure-k8s
-          
-          # Wait for retriever to be ready
-          kubectl wait --for=condition=Ready pod/allure-retriever --timeout=60s
-          
-          # Copy results from the PVC to the GitHub Runner
+          kubectl wait --for=condition=Ready pod/allure-retriever --timeout=120s
           yarn run mnt:allure
           yarn run createallure:k8s
 
