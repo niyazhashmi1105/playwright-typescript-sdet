@@ -28,7 +28,6 @@ jobs:
       - name: Build and Load Image into Minikube
         run: |
           docker build -t niyazautomationqa/playwright-typescript-sdet:latest .
-          # This makes the image available inside the cluster without a Docker Hub push
           minikube image load niyazautomationqa/playwright-typescript-sdet:latest
 
       - name: Setup K8s Resources
@@ -38,8 +37,8 @@ jobs:
 
       - name: Wait for Test Execution
         run: |
-          # Wait for the job to complete (max 10 minutes)
-          kubectl wait --for=condition=complete job/playwright-test-job --timeout=600s || \
+          yarn test
+          kubectl wait --for=condition=complete job/playwright-test-job --timeout=120s || \
           kubectl wait --for=condition=failed job/playwright-test-job --timeout=10s
 
       - name: Retrieve Allure Reports
