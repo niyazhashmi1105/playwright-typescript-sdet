@@ -5,6 +5,7 @@ metadata:
 spec:
   template:
     spec:
+      backoffLimit: 0
       containers:
       - name: playwright
         # Use the image you already pushed
