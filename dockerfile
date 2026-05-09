@@ -10,6 +10,7 @@ RUN apt-get update && \
 ENV CI=true
 # Prevent Playwright from trying to download browsers again during runtime
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+ENV PATH /app/node_modules/.bin:$PATH
 
 # Create and set the working directory
 WORKDIR /app

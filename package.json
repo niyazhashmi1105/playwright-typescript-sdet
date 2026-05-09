@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "test": "yarn playwright test tests/dummyJsonAPIs.spec.ts",
+    "test": "npx playwright test tests/dummyJsonAPIs.spec.ts",
     "ci": "yarn lint && yarn test",
     "allure": "allure generate allure-results --clean -o allure-report",
     "createallure:k8s": "allure generate allure-results --clean -o allure-report",
