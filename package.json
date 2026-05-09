@@ -9,7 +9,7 @@
     "test": "playwright test tests/dummyJsonAPIs.spec.ts",
     "ci": "yarn lint && yarn test",
     "allure": "allure generate allure-results --clean -o allure-report",
-    "allure:k8s": "allure generate allure-results-k8s --clean -o allure-report",
+    "createallure:k8s": "allure generate allure-results --clean -o allure-report",
     "open": "allure open allure-report",
     "report": "yarn allure:k8s && yarn open",
     "start": "minikube start",
@@ -23,7 +23,7 @@
     "logs":"kubectl logs -f <POD_NAME>",
     "allure-k8s":"kubectl apply -f allure-retriever.yaml",
     "getpod:allure":"kubectl get pod allure-retriever",
-    "mnt:allure":"kubectl cp allure-retriever:/mnt/allure ./allure-results",
+    "mnt:allure":"kubectl cp allure-retriever:/mnt/allure allure-results",
     "del:allure":"kubectl delete pod allure-retriever",
     "del:pvc":"kubectl delete pvc allure-pvc",
     "stop": "minikube stop"

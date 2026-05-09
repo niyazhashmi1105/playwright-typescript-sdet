@@ -52,13 +52,14 @@ jobs:
           
           # Copy results from the PVC to the GitHub Runner
           yarn run mnt:allure
+          yarn run createallure:k8s
 
       - name: Upload Artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: k8s-allure-report
-          path: ./allure-report/
+          path: allure-report/
           retention-days: 30
 
       - name: Deploy to GitHub Pages
