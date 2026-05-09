@@ -78,3 +78,5 @@ not found
 ### `kubectl get pvc (Ensure it is status Bound)`
 Connection Refused
 ### `minikube start`
+
+![alt text](Playwright_k8s_life_cycle.png)

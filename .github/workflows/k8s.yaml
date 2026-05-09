@@ -24,7 +24,7 @@ jobs:
           cpus: 2
           memory: 4000m 
 
-      - name: Build and Load Image into Minikube
+      - name: Build Docker Image and Load Image into Minikube
         run: |
           docker build -t niyazautomationqa/playwright-tests:latest .
           minikube image load niyazautomationqa/playwright-tests:latest
@@ -36,6 +36,7 @@ jobs:
 
       - name: Wait for Test Execution
         run: |
+          yarn run test
           kubectl wait --for=condition=complete job/playwright-test-job --timeout=180s || \
           kubectl wait --for=condition=failed job/playwright-test-job --timeout=10s
 
