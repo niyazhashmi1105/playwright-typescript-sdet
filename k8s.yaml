@@ -13,7 +13,18 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           - |
+
+            echo "--- CHECKING FILES IN CONTAINER ---"
+            find ./tests -name "*.spec.ts" | wc -l
+            
+            echo "--- LISTING ALL DISCOVERED SMOKE TESTS ---"
+            npx playwright test --list --grep @smoke
+            
+            echo "--- STARTING TEST EXECUTION ---"
             yarn test:smoke
+            
+            echo "--- SYNCING RESULTS TO PVC ---"
+            sleep 5
         resources:
           limits:
             cpu: "2"

@@ -26,7 +26,7 @@ jobs:
 
       - name: Build Docker Image and Load Image into Minikube
         run: |
-          docker build -t niyazautomationqa/playwright-tests:latest .
+          docker build --no-cache -t niyazautomationqa/playwright-tests:latest .
           minikube image load niyazautomationqa/playwright-tests:latest
       - name: Setup K8s Resources
         run: |
