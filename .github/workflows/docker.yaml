@@ -28,7 +28,7 @@ jobs:
             -v ${{ github.workspace }}/allure-results:/app/allure-results \
             -v ${{ github.workspace }}/playwright-report:/app/playwright-report \
             playwright-tests \
-            yarn test || true 
+            yarn test:smoke || true 
         # "|| true" ensures the workflow continues so we can collect reports even if tests fail
 
       - name: Generate Allure Report

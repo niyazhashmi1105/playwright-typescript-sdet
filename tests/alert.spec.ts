@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test';
 
 
-test('Alerts Handling', async({page})=>{
+test('Alerts Handling @smoke', async({page})=>{
 
     await page.goto('https://testautomationpractice.blogspot.com/')
 

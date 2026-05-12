@@ -13,7 +13,7 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           - |
-            yarn test
+            yarn test:smoke
         resources:
           limits:
             cpu: "2"

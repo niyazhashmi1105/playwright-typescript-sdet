@@ -31,7 +31,7 @@ export const test = base.extend<MyFixtures>({
   },
 
   jsonData: async ({}, use) => {
-    const jsonData = JsonUtils.readJson<UserData>('testdata/data.json');
+    const jsonData = JsonUtils.readJson('testdata/data.json');
     await use(jsonData);
   },
 

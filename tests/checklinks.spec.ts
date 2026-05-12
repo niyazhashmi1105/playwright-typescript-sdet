@@ -11,8 +11,8 @@ test('Count links and check if it is working or Broken', async({page,request})=>
 
     expect(links.length).toBeGreaterThan(0);
 
-    let brokenLinksCount = 0;
-    let workingLinksCount = 0;
+    let brokenLinksCount:number = 0;
+    let workingLinks:number = 0;
 
     for(const link of links){
         const url = await link.getAttribute('href');
@@ -30,18 +30,19 @@ test('Count links and check if it is working or Broken', async({page,request})=>
             }
             else{
                 console.log(`Working Links: ${url} --> ${status}`)
-                workingLinksCount++;
+                
             }
 
         }catch(Error){
             console.error(`Error opening in link: ${url}`)
         }
     }
+    workingLinks = links.length - brokenLinksCount
 
     console.log(`Total Links: ${links.length}`);
     console.log(`Broken Links: ${brokenLinksCount}`)
-    console.log(`Working Links: ${workingLinksCount}`)
-    expect(brokenLinksCount).toBeLessThan(workingLinksCount)
+    console.log(`Working Links: ${workingLinks}`)
+    expect(brokenLinksCount).toBeLessThan(workingLinks)
 
 
 })

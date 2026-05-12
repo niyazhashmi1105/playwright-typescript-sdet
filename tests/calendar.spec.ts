@@ -223,7 +223,7 @@ async function datePickerHandler(
 
     //const calendar = page.getByTestId(calendarLocator)
     const calendar = page.locator(calendarLocator)
-    await expect(calendar).toBeVisible()
+    await calendar.waitFor({state:'visible'})
     await calendar.click()
 
     const currentDate = new Date();

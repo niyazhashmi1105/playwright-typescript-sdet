@@ -7,7 +7,7 @@ import { SchemaValidator } from '../utils/schemaValidator';
 let baseURL = 'https://dummyjson.com';
 let accessToken;
 
-test('Post Request with Headers and Body', async ({ request }) => {
+test('Post Request with Headers and Body @smoke', async ({ request }) => {
 
         const response = await request.post('https://dummyjson.com/auth/login', {
                 headers: {
@@ -23,7 +23,7 @@ test('Post Request with Headers and Body', async ({ request }) => {
 
 })
 
-test('Post Request with Headers and Request Body ', async ({ request }) => {
+test('Post Request with Headers and Request Body @smoke', async ({ request }) => {
 
         const response = await APIUtils.postRequest(request, baseURL + '/auth/login',
 
@@ -46,7 +46,7 @@ test('Post Request with Headers and Request Body ', async ({ request }) => {
 
 })
 
-test('Get Request for All Products', async ({ request }) => {
+test('Get Request for All Products @smoke', async ({ request }) => {
 
         const response = await APIUtils.getRequest(request, baseURL + '/products')
         console.log(await response.json());
@@ -108,7 +108,7 @@ test('Get Request for All Products', async ({ request }) => {
         }
 })
 
-test('Get All Products Schema Validation', async ({ request }) => {
+test('Get All Products Schema Validation @smoke', async ({ request }) => {
 
         const response = await APIUtils.getRequest(request, baseURL + '/products')
         //console.log(await response.json());
@@ -319,7 +319,7 @@ test('Get All Products Schema Validation', async ({ request }) => {
 
 })
 
-test('Get Request for all Products Schema Validation using Schema Validator Utility', async ({ request }) => {
+test('Get Request for all Products Schema Validation using Schema Validator Utility @smoke', async ({ request }) => {
 
         const schema = {
                 "type": "object",
@@ -524,7 +524,7 @@ test('Get Request for all Products Schema Validation using Schema Validator Util
         expect(isValid).toBeTruthy();
 });
 
-test('Get Request for Search Products Using Query Parameters', async ({ request }) => {
+test('Get Request for Search Products Using Query Parameters @smoke', async ({ request }) => {
 
         const response = await APIUtils.getRequest(request, baseURL + '/products/search',
                 {
@@ -537,14 +537,14 @@ test('Get Request for Search Products Using Query Parameters', async ({ request 
         expect(response.status()).toBe(200)
 })
 
-test('Get Request for All Products Using Path Parameters', async ({ request }) => {
+test('Get Request for All Products Using Path Parameters @smoke', async ({ request }) => {
 
         const response = await APIUtils.getRequest(request, baseURL + '/products/{id}', undefined,{ id: 1 })
         console.log(await response.json())
         expect(response.status()).toBe(200)
 })
 
-test('Get Request for All Products Using Both Query and Path Parameters', async ({ request }) => {
+test('Get Request for All Products Using Both Query and Path Parameters @smoke', async ({ request }) => {
 
         const response = await APIUtils.getRequest(request, baseURL + '/products/{id}',
                 { include: 'reviews' },
@@ -554,7 +554,7 @@ test('Get Request for All Products Using Both Query and Path Parameters', async 
 })
 
 
-test('Adding Products to the Cart', async ({ request }) => {
+test('Adding Products to the Cart @smoke', async ({ request }) => {
         const response = await APIUtils.postRequest(request, baseURL + '/products/add',
                 {
                         title: 'My Iphone-12',
@@ -575,7 +575,7 @@ test('Adding Products to the Cart', async ({ request }) => {
 })
 
 
-test('Updating a Product to the Cart', async ({ request }) => {
+test('Updating a Product to the Cart @smoke', async ({ request }) => {
 
         const response = await APIUtils.putRequest(request, baseURL + '/products/1',
                 {
@@ -594,7 +594,7 @@ test('Updating a Product to the Cart', async ({ request }) => {
         expect(responseBody.status()).toBe(200)
 })
 
-test('Deleting a Product from the Cart', async ({ request }) => {
+test('Deleting a Product from the Cart @smoke', async ({ request }) => {
 
         const response = await APIUtils.deleteRequest(request, baseURL + '/products/1')
 

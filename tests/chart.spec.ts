@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 
-test('Chart Automation',async({page})=>{
+test('Chart Automation @smoke',async({page})=>{
 
     test.setTimeout(60 * 1000);
      page.setViewportSize({'width': 1920,'height':1080})

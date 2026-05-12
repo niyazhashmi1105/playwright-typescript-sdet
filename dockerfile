@@ -1,5 +1,5 @@
 # Use the official Playwright image matching your version
-FROM mcr.microsoft.com/playwright:v1.59.1-noble
+FROM mcr.microsoft.com/playwright:v1.60.0-noble
 
 # Install Java (required for Allure)
 RUN apt-get update && \
@@ -36,13 +36,4 @@ RUN mkdir -p playwright-report test-results allure-results
 
 # Default command to run tests
 # Note: Adjust "test" to your specific yarn script name
-#CMD ["yarn","run","test"]
-
-#Running Docker image container and pull reports
-#docker run --rm -it --ipc=host \
-#-v $(pwd)/playwright-report:/app/playwright-report \
-#  -v $(pwd)/allure-results:/app/allure-results \
-#  playwright-docker-image
-
-# Generate Allure Report
-#yarn allure && yarn open
+#CMD ["yarn","run","test:smoke"]
