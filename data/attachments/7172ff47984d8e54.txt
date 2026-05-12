@@ -1,0 +1,17 @@
+{
+  products: [
+    { id: 124, title: 'iPhone X', price: 899.99 },
+    { id: 125, title: 'Oppo A57', price: 249.99 },
+    { id: 126, title: 'Oppo F19 Pro Plus', price: 399.99 },
+    { id: 127, title: 'Oppo K1', price: 299.99 },
+    { id: 128, title: 'Realme C35', price: 149.99 },
+    { id: 129, title: 'Realme X', price: 299.99 },
+    { id: 130, title: 'Realme XT', price: 349.99 },
+    { id: 131, title: 'Samsung Galaxy S7', price: 299.99 },
+    { id: 132, title: 'Samsung Galaxy S8', price: 499.99 },
+    { id: 133, title: 'Samsung Galaxy S10', price: 699.99 }
+  ],
+  total: 23,
+  skip: 10,
+  limit: 10
+}
