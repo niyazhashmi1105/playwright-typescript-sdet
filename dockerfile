@@ -5,7 +5,9 @@ FROM mcr.microsoft.com/playwright:v1.60.0-noble
 RUN apt-get update && \
     apt-get install -y default-jre && \
     apt-get clean;
-    
+ 
+RUN npx playwright install chrome
+
 # Set environment variables
 ENV CI=true
 # Prevent Playwright from trying to download browsers again during runtime
@@ -17,6 +19,7 @@ WORKDIR /app
 # 1. Install dependencies first (better caching)
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
+
 
 # 2. Copy the framework structure
 # We copy specific folders to avoid bringing in local garbage (like local node_modules)
