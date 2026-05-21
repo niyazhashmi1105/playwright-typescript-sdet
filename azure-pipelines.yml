@@ -45,10 +45,9 @@ steps:
     allure generate allure-results --clean -o $(System.DefaultWorkingDirectory)/allure-report
   displayName: 'Manually Generate Allure Report Structure'
   condition: succeededOrFailed()
-- task: PublishPipelineArtifact@1
+- task: PublishAllureReport@2
   inputs:
-    targetPath: '$(System.DefaultWorkingDirectory)/allure-report'
-    artifact: 'Allure-Report'
-    publishLocation: 'pipeline'
-  displayName: 'Publish Allure Report Artifact'
+    testResultsDir: '$(System.DefaultWorkingDirectory)/allure-report'
+    reportName: 'Allure report'
+  displayName: 'Publish to Azure Pipelines Allure Tab'
   condition: succeededOrFailed()
