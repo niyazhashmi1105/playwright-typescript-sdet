@@ -18,16 +18,16 @@ steps:
   displayName: 'Run Playwright tests'
   env:
     CI: 'true'
-- task: PublishTestResults@2
-  displayName: 'Publish test results'
-  inputs:
-    searchFolder: 'junit-report'
-    testResultsFormat: 'JUnit'
-    testResultsFiles: 'junit-results.xml'
-    mergeTestResults: true
-    failTaskOnFailedTests: true
-    testRunTitle: 'Junit Tests'
-  condition: succeededOrFailed()
+# - task: PublishTestResults@2
+#   displayName: 'Publish test results'
+#   inputs:
+#     searchFolder: 'junit-report'
+#     testResultsFormat: 'JUnit'
+#     testResultsFiles: 'junit-results.xml'
+#     mergeTestResults: true
+#     failTaskOnFailedTests: true
+#     testRunTitle: 'Junit Tests'
+#   condition: succeededOrFailed()
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: playwright-report

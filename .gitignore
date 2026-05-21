@@ -29,6 +29,7 @@ dist-ssr
 /allure-report/
 /allure-results/
 /allure-results-k8s/
+/junit-report/
 
 .env
 *.env
