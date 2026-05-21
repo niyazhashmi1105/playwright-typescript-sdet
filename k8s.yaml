@@ -21,7 +21,7 @@ spec:
             npx playwright test --list --grep @smoke
             
             echo "--- STARTING TEST EXECUTION ---"
-            yarn test:smoke
+            yarn test
             
             echo "--- SYNCING RESULTS TO PVC ---"
             sleep 5
