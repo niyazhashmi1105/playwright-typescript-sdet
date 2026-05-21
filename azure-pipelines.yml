@@ -40,21 +40,25 @@ steps:
     artifact: playwright-report
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
+
 - script: |
     npm install -g allure-commandline --save-dev
     npm install --save-dev allure-playwright
-    allure generate allure-results --clean -o allure-report
-  displayName: 'Generate Allure Report'
+  displayName: 'Install Allure Commandline'
   condition: succeededOrFailed()
+  
 - task: PublishAllureReport@2
   displayName: 'Publish to Azure Pipelines Allure Tab'
   inputs:
-    testResultsDir: allure-report
-    reportName: 'Allure Report'
+    testResultsDir: allure-results
+    reportName: 'Allure Results'
   condition: succeededOrFailed()
+
+# - script: npm run allure
+#   displayName: 'Generate Allure Report'
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: allure-report
-    artifact: allure-report
+    targetPath: allure-results
+    artifact: allure-results
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
