@@ -39,7 +39,6 @@ steps:
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
 - task: PublishAllureReport@2
-- task: PublishAllureReport@2
   inputs:
     allureVersion: '2.40.0'
     testResultsDir: 'allure-results'
