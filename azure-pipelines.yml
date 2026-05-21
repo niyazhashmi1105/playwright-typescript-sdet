@@ -40,14 +40,15 @@ steps:
     artifact: playwright-report
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
-- script: |
-    npm install -g allure-commandline --loglevel error
-    allure generate allure-results --single-file --clean -o $(System.DefaultWorkingDirectory)/allure-report
-  displayName: 'Manually Generate Allure Report Structure'
-  condition: succeededOrFailed()
+# - script: |
+#     npm install -g allure-commandline --loglevel error
+#     allure generate allure-results --single-file --clean -o $(System.DefaultWorkingDirectory)/allure-report
+#   displayName: 'Manually Generate Allure Report Structure'
+#   condition: succeededOrFailed()
 - task: PublishAllureReport@2
-  inputs:
-    testResultsDir: '$(System.DefaultWorkingDirectory)/allure-report'
-    reportName: 'Allure report'
   displayName: 'Publish to Azure Pipelines Allure Tab'
+  inputs:
+    allureVersion: 2.41.0
+    testResultsDir: allure-results
+    reportName: 'Allure report'
   condition: succeededOrFailed()
