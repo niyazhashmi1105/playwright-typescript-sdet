@@ -41,11 +41,11 @@ steps:
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
 
-- script: |
-    npm install -g allure-commandline --save-dev
-    npm install --save-dev allure-playwright
-  displayName: 'Install Allure Commandline'
-  condition: succeededOrFailed()
+# - script: |
+#     npm install -g allure-commandline --save-dev
+#     npm install --save-dev allure-playwright
+#   displayName: 'Install Allure Commandline'
+#   condition: succeededOrFailed()
   
 - task: PublishAllureReport@2
   displayName: 'Publish to Azure Pipelines Allure Tab'
@@ -53,9 +53,6 @@ steps:
     testResultsDir: allure-results
     reportName: 'Allure Results'
   condition: succeededOrFailed()
-
-# - script: npm run allure
-#   displayName: 'Generate Allure Report'
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: allure-results
