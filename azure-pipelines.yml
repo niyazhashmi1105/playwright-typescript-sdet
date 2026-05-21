@@ -34,11 +34,15 @@ steps:
     artifact: playwright-report
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
-- task: PublishAllureReport@2
-  inputs:
-    allureVersion: '2.40.0'
-    testResultsDir: 'allure-results'
-    reportName: 'Allure report'
-    singleFile: false
+- script: |
+    npm install -g allure-commandline --loglevel error
+    allure generate allure-results --clean -o $(System.DefaultWorkingDirectory)/allure-report
+  displayName: 'Manually Generate Allure Report Structure'
   condition: succeededOrFailed()
- 
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)/allure-report'
+    artifact: 'Allure-Report'
+    publishLocation: 'pipeline'
+  displayName: 'Publish Allure Report Artifact'
+  condition: succeededOrFailed()
