@@ -28,10 +28,6 @@ steps:
 #     failTaskOnFailedTests: true
 #     testRunTitle: 'Junit Tests'
 #   condition: succeededOrFailed()
-- script: npm install -g allure-commandline
-  displayName: 'Install Allure command line'
-- script: allure generate $(System.DefaultWorkingDirectory)/allure-results --clean -o $(System.DefaultWorkingDirectory)/allure-report
-  displayName: 'Generate Allure Report'
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: playwright-report
@@ -43,4 +39,5 @@ steps:
     allureVersion: '2.40.0'
     testResultsDir: 'allure-results'
     reportName: 'Allure report'
+    singleFile: false
  
