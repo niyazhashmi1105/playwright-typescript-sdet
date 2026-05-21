@@ -42,7 +42,7 @@ steps:
   condition: succeededOrFailed()
 - script: |
     npm install -g allure-commandline --loglevel error
-    allure generate allure-results --clean -o $(System.DefaultWorkingDirectory)/allure-report
+    allure generate allure-results --single-file --clean -o $(System.DefaultWorkingDirectory)/allure-report
   displayName: 'Manually Generate Allure Report Structure'
   condition: succeededOrFailed()
 - task: PublishAllureReport@2
