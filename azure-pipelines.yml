@@ -48,7 +48,6 @@ steps:
 - task: PublishAllureReport@2
   displayName: 'Publish to Azure Pipelines Allure Tab'
   inputs:
-    allureVersion: 2.36.0
     testResultsDir: allure-report
     reportName: 'Allure report'
   condition: succeededOrFailed()
