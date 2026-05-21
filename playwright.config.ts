@@ -50,7 +50,7 @@ export default defineConfig({
       //use: { ...devices['Desktop Chrome'] },
       use: {
             channel: 'chrome',
-            headless:false,
+            headless:true,
             launchOptions: {
                 args: ['--disable-blink-features=AutomationControlled'],
             },
