@@ -14,7 +14,7 @@ steps:
   displayName: 'npm ci'
 - script: npx playwright install --with-deps
   displayName: 'Install Playwright browsers'
-- script: npm run test
+- script: npm run test:smoke
   displayName: 'Run Playwright tests'
   env:
     CI: 'true'
@@ -34,3 +34,10 @@ steps:
     artifact: playwright-report
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
+- task: PublishAllureReport@2
+  displayName: 'Generate and Publish Allure Report'
+  condition: succeededOrFailed()
+  inputs:
+    allureVersion: "2.40.0"
+    testResultsDir: 'allure-results'
+    reportName: "Allure Results"
