@@ -40,4 +40,5 @@ steps:
     testResultsDir: 'allure-results'
     reportName: 'Allure report'
     singleFile: false
+  condition: succeededOrFailed()
  
