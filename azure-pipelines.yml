@@ -39,10 +39,9 @@ steps:
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
 - task: PublishAllureReport@2
-  displayName: 'Generate and Publish Allure Report'
-  condition: succeededOrFailed()
+- task: PublishAllureReport@2
   inputs:
-    allureVersion: "2.40.0"
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/allure-report'
-    testResultsDir: 'allure-report'
-    reportName: "Allure Report"
+    allureVersion: '2.40.0'
+    testResultsDir: 'allure-results'
+    reportName: 'Allure report'
+ 
