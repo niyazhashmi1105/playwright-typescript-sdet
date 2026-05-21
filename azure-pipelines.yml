@@ -50,5 +50,11 @@ steps:
   displayName: 'Publish to Azure Pipelines Allure Tab'
   inputs:
     testResultsDir: allure-report
-    reportName: 'Allure report'
+    reportName: 'Allure Report'
+  condition: succeededOrFailed()
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: allure-report
+    artifact: allure-report
+    publishLocation: 'pipeline'
   condition: succeededOrFailed()
