@@ -16,7 +16,7 @@ steps:
     displayName: "npm ci"
   # - script: npx playwright install --with-deps
   #   displayName: "Install Playwright browsers"
-  - script: npx playwright install chrome
+  - script: npx playwright install --force chrome
     displayName: Install Chrome Browser
   - script: npm run test:smoke
     displayName: "Run Playwright tests"
