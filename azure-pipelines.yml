@@ -4,6 +4,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 container: mcr.microsoft.com/playwright:v1.60.0-noble
+options: --user 0:0
 
 steps:
   - task: UseNode@1
@@ -14,8 +15,8 @@ steps:
     displayName: "npm ci"
   # - script: npx playwright install --with-deps
   #   displayName: "Install Playwright browsers"
-  # - script: sudo DEBIAN_FRONTEND=noninteractive npx playwright install chrome
-  #   displayName: Install Chrome Browser
+  - script: npx playwright install chrome
+    displayName: Install Chrome Browser
   - script: npm run test:smoke
     displayName: "Run Playwright tests"
     env:
