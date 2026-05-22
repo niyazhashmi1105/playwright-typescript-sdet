@@ -14,12 +14,13 @@ steps:
     displayName: "npm ci"
   # - script: npx playwright install --with-deps
   #   displayName: "Install Playwright browsers"
-  - script: sudo DEBIAN_FRONTEND=noninteractive npx playwright install chrome
-    displayName: Install Chrome Browser
+  # - script: sudo DEBIAN_FRONTEND=noninteractive npx playwright install chrome
+  #   displayName: Install Chrome Browser
   - script: npm run test:smoke
     displayName: "Run Playwright tests"
     env:
       CI: "true"
+      PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH: /usr/bin/chromium-browser
   - task: PublishTestResults@2
     displayName: "Publish test results"
     inputs:
