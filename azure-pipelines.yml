@@ -14,7 +14,7 @@ steps:
     displayName: "npm ci"
   # - script: npx playwright install --with-deps
   #   displayName: "Install Playwright browsers"
-  - script: npx playwright install chrome --no-shell
+  - script: sudo DEBIAN_FRONTEND=noninteractive npx playwright install chrome
     displayName: Install Chrome Browser
   - script: npm run test:smoke
     displayName: "Run Playwright tests"
