@@ -3,6 +3,7 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+container: mcr.microsoft.com/playwright:v1.60.0-noble
 
 steps:
   - task: UseNode@1
