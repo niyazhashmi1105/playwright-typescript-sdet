@@ -310,10 +310,10 @@ test('Get All Products Schema Validation', async ({ request }) => {
 
         const ajv = new Ajv();
         addFormats(ajv);
-        const validate = ajv.compile(schema)
-        const valid = validate(responseBody);
+        const schemaValidator = ajv.compile(schema)
+        const valid = schemaValidator(responseBody);
         if (!valid) {
-                console.log(validate.errors);
+                console.log(schemaValidator.errors);
         }
         expect(valid).toBeTruthy();
 

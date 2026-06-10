@@ -8,6 +8,7 @@
     "lint:fix": "eslint --fix .",
     "test": "npx playwright test tests/dummyJsonAPIs.spec.ts",
     "test:smoke": "npx playwright test --grep @smoke",
+    "test:sanity": "npx playwright test tests/stockmarket.spec.ts",
     "ci": "yarn lint && yarn test",
     "allure": "allure generate allure-results --clean -o allure-report",
     "createallure:k8s": "allure generate allure-results --clean -o allure-report",

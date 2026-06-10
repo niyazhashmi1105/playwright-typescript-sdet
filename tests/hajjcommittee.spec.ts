@@ -9,7 +9,7 @@ test('Hajj Committee Automation for All States', async ({ page, context }) => {
 
     const allStates = page.locator('.st_ws_cont ul li')
     expect(allStates.first()).toBeVisible()
-    const states = (await allStates.allInnerTexts())
+    const states = await allStates.allInnerTexts()
     //console.log(states)
     console.log(await allStates.count())
 
