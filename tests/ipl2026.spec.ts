@@ -22,9 +22,10 @@ test('Get values from IPL Table 2026', async ({ page }) => {
         teams.push(pos, teamName, netRunRate, points);
     }
 
-    console.log(teams[1]+" has maximum "+teams[3]+" points "+"with Net Run rate of "+teams[2]+" and stood at position "+teams[0]);
+    console.log(teams[1]+" has maximum "+teams[3]+" points "+"with Net Run rate of "+teams[2]
+        +" and stood at position "+teams[0]);
     expect(parseInt(teams[0])).toBe(1)
-    expect(teams[1]).toBe('PBKS')
-    expect(parseFloat(teams[2])).toBe(1.420)
-    expect(parseInt(teams[3])).toBe(11)
+    expect(teams[1]).toBe('RCB')
+    expect(parseFloat(teams[2])).toBe(0.783)
+    expect(parseInt(teams[3])).toBe(18)
 })
